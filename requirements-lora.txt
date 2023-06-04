@@ -1,0 +1,4 @@
+deepspeed
+peft
+einops
+flash-attn
