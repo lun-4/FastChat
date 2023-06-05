@@ -2,11 +2,12 @@
 
 set -eux
 
-dataset_path=$1
-path_to_deepspeed=${2:-deepspeed}
+model=$1
+dataset_path=$2
+path_to_deepspeed=${3:-deepspeed}
 
 $path_to_deepspeed fastchat/train/train_lora.py \
-    --model_name_or_path reeducator/vicuna-13b-cocktail  \
+    --model_name_or_path $model \
     --data_path $dataset_path \
     --bf16 True \
     --output_dir output_vicuna_13b \
