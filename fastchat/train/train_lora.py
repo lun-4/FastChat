@@ -105,6 +105,7 @@ def train():
         cache_dir=training_args.cache_dir,
         torch_dtype=torch.float16,
         load_in_8bit=True,
+        device_map="auto",
     )
     model = prepare_model_for_int8_training(model)
     lora_config = LoraConfig(
