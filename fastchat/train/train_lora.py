@@ -20,6 +20,7 @@ import logging
 import pathlib
 import typing
 
+import torch
 from deepspeed import zero
 from deepspeed.runtime.zero.partition_parameters import ZeroParamStatus
 from peft import LoraConfig, get_peft_model
