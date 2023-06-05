@@ -23,7 +23,7 @@ import typing
 import torch
 from deepspeed import zero
 from deepspeed.runtime.zero.partition_parameters import ZeroParamStatus
-from peft import LoraConfig, get_peft_model
+from peft import LoraConfig, get_peft_model, prepare_model_for_int8_training
 import transformers
 from transformers import Trainer
 
@@ -104,7 +104,9 @@ def train():
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
         torch_dtype=torch.float16,
+        load_in_8bit=True,
     )
+    model = prepare_model_for_int8_training(model)
     lora_config = LoraConfig(
         r=lora_args.lora_r,
         lora_alpha=lora_args.lora_alpha,
