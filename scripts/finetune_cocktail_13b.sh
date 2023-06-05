@@ -1,4 +1,8 @@
 #!/bin/sh
+#
+# NOTE: make sure to set gradient_checkpointing to False if you have
+# enough RAM to accomodate it. setting it to True requires some code
+# changes that i am not ready to do
 
 set -eux
 
@@ -7,6 +11,7 @@ dataset_path=$2
 path_to_deepspeed=${3:-deepspeed}
 
 $path_to_deepspeed fastchat/train/train_lora.py \
+    --deepspeed ./ds_config.json \
     --model_name_or_path $model \
     --data_path $dataset_path \
     --bf16 True \
