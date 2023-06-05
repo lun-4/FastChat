@@ -1,4 +1,6 @@
 deepspeed
 peft
 einops
-flash-attn
+flash-attn==1.0.4
+accelerate
+bitsandbytes==0.39.0
